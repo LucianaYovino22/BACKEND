@@ -44,7 +44,7 @@ public class PersonaController {
         return new ResponseEntity(persona, HttpStatus.OK);
     }
 
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoPersona dtopers) {
         if (StringUtils.isBlank(dtopers.getNombreP())) {
