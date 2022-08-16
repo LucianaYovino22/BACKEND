@@ -52,7 +52,7 @@ public class CExperiencia {
         return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoExperiencia dtoexp){      
         if(StringUtils.isBlank(dtoexp.getNombreE()))
@@ -65,7 +65,7 @@ public class CExperiencia {
         
         return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoExperiencia dtoexp){
         //Validamos si existe el ID

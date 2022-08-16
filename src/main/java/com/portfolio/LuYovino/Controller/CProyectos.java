@@ -43,7 +43,7 @@ public class CProyectos {
         return new ResponseEntity(proyectos, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sProyectos.existsById(id)) {
@@ -53,7 +53,7 @@ public class CProyectos {
         return new ResponseEntity(new Mensaje("proyecto eliminado"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoProyectos dtopro) {
         if (StringUtils.isBlank(dtopro.getNombrePro())) {
@@ -69,7 +69,7 @@ public class CProyectos {
         return new ResponseEntity(new Mensaje("Proyecto agregado"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoProyectos dtopro) {
         //validamos ID
