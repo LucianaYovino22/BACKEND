@@ -44,7 +44,7 @@ public class PersonaController {
         return new ResponseEntity(persona, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('admin')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoPersona dtopers) {
         if (StringUtils.isBlank(dtopers.getNombreP())) {
@@ -60,7 +60,7 @@ public class PersonaController {
         return new ResponseEntity(new Mensaje("Persona agregada!"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('admin')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtopersona) {
         //validamos ID
@@ -87,7 +87,7 @@ public class PersonaController {
         return new ResponseEntity(new Mensaje("Persona Actualizado"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('admin')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sPersona.existsById(id)) {
