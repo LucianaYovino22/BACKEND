@@ -30,7 +30,7 @@ public class PersonaController {
     SPersona sPersona;
 
     @GetMapping("/lista")
-    public ResponseEntity<List< Persona>> list() {
+    public ResponseEntity<List<Persona>> list() {
         List<Persona> list = sPersona.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class PersonaController {
         return new ResponseEntity(persona, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN) or #authUser.id == #userId")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoPersona dtopers) {
         if (StringUtils.isBlank(dtopers.getNombreP())) {
@@ -60,7 +60,7 @@ public class PersonaController {
         return new ResponseEntity(new Mensaje("Persona agregada!"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN) or #authUser.id == #userId")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtopersona) {
         //validamos ID
@@ -87,7 +87,7 @@ public class PersonaController {
         return new ResponseEntity(new Mensaje("Persona Actualizado"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN) or #authUser.id == #userId")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sPersona.existsById(id)) {
