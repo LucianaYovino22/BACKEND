@@ -35,7 +35,7 @@ public class Persona implements Serializable {
     private String tituloP;
 
     @NotNull
-    @Size(min = 1, max = 200, message = "no cumple con la longitud")
+    @Size(min = 1, max = 500, message = "no cumple con la longitud")
     private String descP;
     
 
